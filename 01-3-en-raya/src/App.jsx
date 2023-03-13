@@ -11,11 +11,22 @@ import {WinnerModal} from './components/WinnerModal.jsx'
 
 import {Game} from './components/Game.jsx'
 
+import { saveGame, resetGameStorage } from './logic/storage/index.js'
+
+
 function App() {
   //Estado del tablero
-  const [board, setBoard] = useState(Array(9).fill(null))
+  const [board, setBoard] = useState(()=>{
+    const boardFromStorage = window.localStorage.getItem('board')
+    return boardFromStorage 
+    ? JSON.parse(boardFromStorage) 
+    : Array(9).fill(null)
+  })
   //Estado del turno
-  const [turn, setTurn] = useState(TURNS.X)
+  const [turn, setTurn] = useState(()=>{
+    const turnFromStorage = window.localStorage.getItem('turn')
+    return turnFromStorage ?? TURNS.X
+  })
   //Estado del ganador
   //Null: no hay ganador, false: empate, true: hay ganador
   const [winner, setWinner] = useState(null)
@@ -25,6 +36,8 @@ function App() {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
     setWinner(null)
+
+    resetGameStorage()
   }
 
   const updateBoard = (index) => {
@@ -41,6 +54,9 @@ function App() {
     //cambiar el turno
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
+    
+    //guardar partida
+    saveGame({board: newBoard , turn: newTurn})
 
     //Revisar si hay un ganador
     const newWinner = checkWinner(newBoard)

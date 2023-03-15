@@ -1,9 +1,12 @@
 {
   "name": "01-3-en-raya",
   "private": true,
+  "homepage":"https://github.com/PablitoBasttDev/ta-te-ti.git",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"

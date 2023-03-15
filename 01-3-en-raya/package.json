@@ -1,7 +1,7 @@
 {
   "name": "01-3-en-raya",
   "private": true,
-  "homepage":"https://github.com/PablitoBasttDev/ta-te-ti.git",
+  "homepage": "https://github.com/PablitoBasttDev/ta-te-ti.git",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -14,7 +14,8 @@
   "dependencies": {
     "canvas-confetti": "1.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
